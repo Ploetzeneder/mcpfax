@@ -5,7 +5,7 @@ const findFax = {
   noun: 'Fax',
   display: { label: 'Find Fax (Status)', description: 'Gets the current status of a fax by its ID.' },
   operation: {
-    inputFields: [{ key: 'fax_id', label: 'Fax ID', type: 'integer', required: true }],
+    inputFields: [{ key: 'fax_id', label: 'Fax ID', type: 'integer', required: true, dynamic: 'recent_faxes.fax_id.label' }],
     perform: async (z, bundle) => {
       const res = await z.request({ url: `${API}/fax/${bundle.inputData.fax_id}`, skipThrowForStatus: true });
       if (res.status === 404) return [];
@@ -31,18 +31,4 @@ const findContact = {
   },
 };
 
-const getBalance = {
-  key: 'get_balance',
-  noun: 'Balance',
-  display: { label: 'Get Balance', description: 'Returns the prepaid balance and current prices.' },
-  operation: {
-    inputFields: [],
-    perform: async (z) => {
-      const res = await z.request({ url: `${API}/balance` });
-      return [{ id: 'balance', ...res.data }];
-    },
-    sample: { id: 'balance', currency: 'EUR', balance: 25.4, balance_formatted: '€25.40' },
-  },
-};
-
-module.exports = { findFax, findContact, getBalance };
+module.exports = { findFax, findContact };

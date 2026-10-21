@@ -1,6 +1,6 @@
 const { API, sampleFax, faxOutputFields } = require('../common');
 
-const faxIdField = { key: 'fax_id', label: 'Fax ID', type: 'integer', required: true, helpText: 'The Fax ID returned by "Send Fax".' };
+const faxIdField = { key: 'fax_id', label: 'Fax', type: 'integer', required: true, dynamic: 'recent_faxes.fax_id.label', helpText: 'Choose a recent fax or map the Fax ID returned by "Send Fax".' };
 
 const resendFax = {
   key: 'resend_fax',
