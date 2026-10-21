@@ -1,6 +1,6 @@
 {
   "name": "mcpfax-zapier",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Zapier integration for mcpfax – send real faxes worldwide (prepaid, no subscription).",
   "main": "index.js",
   "license": "MIT",
