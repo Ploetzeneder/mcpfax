@@ -1,0 +1,6 @@
+{
+  "name": "cancelScheduledFax",
+  "type": "action",
+  "label": "Cancel a Scheduled Fax",
+  "description": "Cancels a scheduled fax before it is sent (full refund)."
+}

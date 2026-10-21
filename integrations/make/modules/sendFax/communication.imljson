@@ -1,0 +1,21 @@
+{
+  "url": "/fax/send",
+  "method": "POST",
+  "body": {
+    "recipient_fax_number": "{{parameters.recipient_fax_number}}",
+    "file_base64": "{{if(parameters.source = 'file', toString(parameters.data, 'base64'), undefined)}}",
+    "file_name": "{{if(parameters.source = 'file', parameters.fileName, undefined)}}",
+    "content": "{{if(parameters.source = 'text', parameters.content, undefined)}}",
+    "content_format": "{{if(parameters.source = 'text', 'markdown', undefined)}}",
+    "file_url": "{{if(parameters.source = 'url', parameters.file_url, undefined)}}",
+    "recipient_name": "{{ifempty(parameters.recipient_name, undefined)}}",
+    "cover_page": "{{parameters.cover_page}}",
+    "subject": "{{ifempty(parameters.subject, undefined)}}",
+    "send_at": "{{ifempty(parameters.send_at, undefined)}}",
+    "max_cost": "{{ifempty(parameters.max_cost, undefined)}}",
+    "idempotency_key": "{{ifempty(parameters.idempotency_key, undefined)}}"
+  },
+  "response": {
+    "output": "{{body}}"
+  }
+}

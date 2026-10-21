@@ -1,0 +1,7 @@
+{
+  "url": "/fax/{{parameters.fax_id}}",
+  "method": "GET",
+  "response": {
+    "output": "{{body}}"
+  }
+}

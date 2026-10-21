@@ -1,0 +1,20 @@
+{
+  "url": "https://mcpfax.de/api/v1/balance",
+  "headers": {
+    "Authorization": "Bearer {{parameters.apiKey}}"
+  },
+  "response": {
+    "metadata": {
+      "type": "text",
+      "value": "{{body.currency}} {{body.balance}}"
+    },
+    "error": {
+      "message": "[{{statusCode}}] {{ifempty(body.message, 'Invalid API key')}}"
+    }
+  },
+  "log": {
+    "sanitize": [
+      "request.headers.authorization"
+    ]
+  }
+}

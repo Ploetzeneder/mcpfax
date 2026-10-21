@@ -1,0 +1,6 @@
+{
+  "name": "saveContact",
+  "type": "action",
+  "label": "Save a Contact",
+  "description": "Saves a fax contact to the address book."
+}

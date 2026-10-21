@@ -1,0 +1,6 @@
+{
+  "name": "watchFailedFaxes",
+  "type": "trigger",
+  "label": "Watch Failed Faxes",
+  "description": "Triggers when a fax is failed. The amount of failed faxes is refunded automatically."
+}

@@ -1,0 +1,9 @@
+[
+  {
+    "name": "apiKey",
+    "type": "password",
+    "label": "API Key",
+    "required": true,
+    "help": "Create an API key at [mcpfax.de → Account → API keys](https://mcpfax.de/account.php#keys). It starts with `mfx_`."
+  }
+]

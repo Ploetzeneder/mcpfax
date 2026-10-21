@@ -95,6 +95,21 @@ More examples:
 
 ---
 
+## 3. Automation platforms
+
+Ready-made integrations in [`integrations/`](integrations/):
+
+| Platform | Folder | What's inside |
+|---|---|---|
+| **n8n** | [`integrations/n8n`](integrations/n8n) | Community node `n8n-nodes-mcpfax` (actions + polling trigger) |
+| **Zapier** | [`integrations/zapier`](integrations/zapier) | Zapier Platform CLI app (Send Fax, Get Price, Find Fax, triggers *Fax Delivered* / *Fax Failed*) |
+| **Make** | [`integrations/make`](integrations/make) | Custom app (IML): 12 modules incl. watch triggers |
+| **Activepieces** | [`integrations/activepieces`](integrations/activepieces) | Piece `@activepieces/piece-mcpfax` |
+
+All of them use the REST API with an API key and offer the same core operations: send a fax (file, text or URL), get the price, get the status, resend, cancel a scheduled fax, download the PDF send report, balance and address book.
+
+---
+
 ## Pricing
 
 | Destination | First page | Each additional page |

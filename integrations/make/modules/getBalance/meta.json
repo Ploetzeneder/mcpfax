@@ -1,0 +1,6 @@
+{
+  "name": "getBalance",
+  "type": "action",
+  "label": "Get Balance",
+  "description": "Returns the prepaid balance and current prices."
+}

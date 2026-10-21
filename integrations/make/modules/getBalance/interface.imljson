@@ -1,0 +1,17 @@
+[
+  {
+    "name": "currency",
+    "type": "text",
+    "label": "Currency"
+  },
+  {
+    "name": "balance",
+    "type": "number",
+    "label": "Balance"
+  },
+  {
+    "name": "balance_formatted",
+    "type": "text",
+    "label": "Balance (formatted)"
+  }
+]

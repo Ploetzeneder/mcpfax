@@ -1,0 +1,18 @@
+{
+  "url": "/faxes",
+  "method": "GET",
+  "qs": {
+    "status": "delivered",
+    "limit": 50
+  },
+  "response": {
+    "iterate": "{{body.faxes}}",
+    "output": "{{item}}",
+    "trigger": {
+      "id": "{{item.fax_id}}",
+      "date": "{{item.updated_at}}",
+      "type": "id",
+      "order": "desc"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "resendFax",
+  "type": "action",
+  "label": "Resend a Fax",
+  "description": "Sends a previous fax again (costs prepaid credit)."
+}

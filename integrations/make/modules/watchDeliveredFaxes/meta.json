@@ -1,0 +1,6 @@
+{
+  "name": "watchDeliveredFaxes",
+  "type": "trigger",
+  "label": "Watch Delivered Faxes",
+  "description": "Triggers when a fax is delivered."
+}

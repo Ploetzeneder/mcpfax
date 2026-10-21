@@ -1,0 +1,22 @@
+[
+  {
+    "name": "contact_id",
+    "type": "uinteger",
+    "label": "Contact ID"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "fax",
+    "type": "text",
+    "label": "Fax number"
+  },
+  {
+    "name": "note",
+    "type": "text",
+    "label": "Note"
+  }
+]

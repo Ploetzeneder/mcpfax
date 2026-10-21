@@ -1,0 +1,6 @@
+{
+  "name": "getFaxPrice",
+  "type": "action",
+  "label": "Get a Fax Price",
+  "description": "Validates the number, counts pages and returns the exact cost. Sends nothing."
+}

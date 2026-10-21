@@ -1,0 +1,8 @@
+{
+  "url": "/fax/{{parameters.fax_id}}/resend",
+  "method": "POST",
+  "body": {},
+  "response": {
+    "output": "{{body}}"
+  }
+}

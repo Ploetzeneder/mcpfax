@@ -1,0 +1,6 @@
+{
+  "name": "listFaxes",
+  "type": "search",
+  "label": "Search Faxes",
+  "description": "Lists recent faxes."
+}

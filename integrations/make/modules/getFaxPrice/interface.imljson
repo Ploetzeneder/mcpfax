@@ -1,0 +1,27 @@
+[
+  {
+    "name": "to",
+    "type": "text",
+    "label": "Fax number"
+  },
+  {
+    "name": "pages",
+    "type": "uinteger",
+    "label": "Pages"
+  },
+  {
+    "name": "cost",
+    "type": "number",
+    "label": "Cost"
+  },
+  {
+    "name": "currency",
+    "type": "text",
+    "label": "Currency"
+  },
+  {
+    "name": "sufficient",
+    "type": "boolean",
+    "label": "Balance sufficient"
+  }
+]

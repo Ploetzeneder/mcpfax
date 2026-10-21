@@ -1,0 +1,15 @@
+{
+  "url": "/faxes",
+  "method": "GET",
+  "qs": {
+    "status": "failed",
+    "limit": 50
+  },
+  "response": {
+    "iterate": "{{body.faxes}}",
+    "output": {
+      "label": "Fax #{{item.fax_id}} to {{item.to}} ({{item.created_at}})",
+      "date": "{{item.updated_at}}"
+    }
+  }
+}

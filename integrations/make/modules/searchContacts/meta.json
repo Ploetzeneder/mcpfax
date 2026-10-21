@@ -1,0 +1,6 @@
+{
+  "name": "searchContacts",
+  "type": "search",
+  "label": "Search Contacts",
+  "description": "Searches the fax address book."
+}

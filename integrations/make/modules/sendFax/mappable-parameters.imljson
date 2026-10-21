@@ -1,0 +1,99 @@
+[
+  {
+    "name": "recipient_fax_number",
+    "type": "text",
+    "label": "Fax number",
+    "required": true,
+    "help": "International format, e.g. `+49 30 1234567`."
+  },
+  {
+    "name": "source",
+    "type": "select",
+    "label": "Document source",
+    "required": true,
+    "default": "file",
+    "options": [
+      {
+        "label": "File",
+        "value": "file",
+        "nested": [
+          {
+            "name": "fileName",
+            "type": "filename",
+            "label": "File name",
+            "required": true,
+            "semantic": "file:name"
+          },
+          {
+            "name": "data",
+            "type": "buffer",
+            "label": "Data",
+            "required": true,
+            "semantic": "file:data",
+            "help": "PDF, DOCX, JPG, PNG or TXT (max. 15 MB)."
+          }
+        ]
+      },
+      {
+        "label": "Text",
+        "value": "text",
+        "nested": [
+          {
+            "name": "content",
+            "type": "text",
+            "label": "Text",
+            "required": true,
+            "multiline": true,
+            "help": "Markdown (headings, lists, **bold**) is supported."
+          }
+        ]
+      },
+      {
+        "label": "URL",
+        "value": "url",
+        "nested": [
+          {
+            "name": "file_url",
+            "type": "url",
+            "label": "Document URL",
+            "required": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "recipient_name",
+    "type": "text",
+    "label": "Recipient name"
+  },
+  {
+    "name": "cover_page",
+    "type": "boolean",
+    "label": "Cover page",
+    "default": false
+  },
+  {
+    "name": "subject",
+    "type": "text",
+    "label": "Subject"
+  },
+  {
+    "name": "send_at",
+    "type": "date",
+    "label": "Send at",
+    "help": "Optional: schedule the fax for later (up to 365 days)."
+  },
+  {
+    "name": "max_cost",
+    "type": "number",
+    "label": "Max cost",
+    "help": "Safety limit in your account currency."
+  },
+  {
+    "name": "idempotency_key",
+    "type": "text",
+    "label": "Idempotency key",
+    "help": "Unique key (e.g. order ID). Retries with the same key never send twice."
+  }
+]

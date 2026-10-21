@@ -1,0 +1,11 @@
+{
+  "url": "/fax/{{parameters.fax_id}}/report",
+  "method": "GET",
+  "type": "binary",
+  "response": {
+    "output": {
+      "fileName": "send-report-fax-{{parameters.fax_id}}.pdf",
+      "data": "{{body}}"
+    }
+  }
+}

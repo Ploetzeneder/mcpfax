@@ -1,0 +1,8 @@
+[
+  {
+    "name": "fax_id",
+    "type": "uinteger",
+    "label": "Fax ID",
+    "required": true
+  }
+]

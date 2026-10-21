@@ -1,0 +1,18 @@
+{
+  "baseUrl": "https://mcpfax.de/api/v1",
+  "headers": {
+    "Authorization": "Bearer {{connection.apiKey}}",
+    "X-Mcpfax-Client": "make"
+  },
+  "response": {
+    "error": {
+      "type": "DataError",
+      "message": "[{{statusCode}}] {{ifempty(body.message, body.error)}}"
+    }
+  },
+  "log": {
+    "sanitize": [
+      "request.headers.authorization"
+    ]
+  }
+}

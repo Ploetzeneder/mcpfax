@@ -1,0 +1,6 @@
+{
+  "name": "sendFax",
+  "type": "action",
+  "label": "Send a Fax",
+  "description": "Sends a document or text as a real fax (costs prepaid credit)."
+}

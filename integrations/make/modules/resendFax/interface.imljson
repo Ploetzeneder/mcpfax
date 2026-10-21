@@ -1,0 +1,62 @@
+[
+  {
+    "name": "fax_id",
+    "type": "uinteger",
+    "label": "Fax ID"
+  },
+  {
+    "name": "to",
+    "type": "text",
+    "label": "Fax number"
+  },
+  {
+    "name": "status",
+    "type": "text",
+    "label": "Status"
+  },
+  {
+    "name": "status_description",
+    "type": "text",
+    "label": "Status description"
+  },
+  {
+    "name": "pages",
+    "type": "uinteger",
+    "label": "Pages"
+  },
+  {
+    "name": "cost",
+    "type": "number",
+    "label": "Cost"
+  },
+  {
+    "name": "currency",
+    "type": "text",
+    "label": "Currency"
+  },
+  {
+    "name": "error",
+    "type": "text",
+    "label": "Error"
+  },
+  {
+    "name": "document",
+    "type": "text",
+    "label": "Document"
+  },
+  {
+    "name": "scheduled_at",
+    "type": "date",
+    "label": "Scheduled for"
+  },
+  {
+    "name": "created_at",
+    "type": "date",
+    "label": "Created at"
+  },
+  {
+    "name": "updated_at",
+    "type": "date",
+    "label": "Updated at"
+  }
+]

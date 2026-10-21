@@ -1,0 +1,13 @@
+{
+  "url": "/faxes",
+  "method": "GET",
+  "qs": {
+    "limit": "{{ifempty(parameters.limit, 10)}}",
+    "status": "{{ifempty(parameters.status, undefined)}}"
+  },
+  "response": {
+    "iterate": "{{body.faxes}}",
+    "output": "{{item}}",
+    "limit": "{{parameters.limit}}"
+  }
+}

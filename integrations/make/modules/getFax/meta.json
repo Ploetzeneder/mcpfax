@@ -1,0 +1,6 @@
+{
+  "name": "getFax",
+  "type": "action",
+  "label": "Get a Fax",
+  "description": "Returns the status of a fax."
+}

@@ -1,0 +1,8 @@
+[
+  {
+    "name": "maxResults",
+    "type": "uinteger",
+    "label": "Maximum number of results",
+    "default": 10
+  }
+]

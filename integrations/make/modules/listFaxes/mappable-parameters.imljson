@@ -1,0 +1,42 @@
+[
+  {
+    "name": "status",
+    "type": "select",
+    "label": "Status",
+    "options": [
+      {
+        "label": "Delivered",
+        "value": "delivered"
+      },
+      {
+        "label": "Failed",
+        "value": "failed"
+      },
+      {
+        "label": "Sent",
+        "value": "sent"
+      },
+      {
+        "label": "Pending",
+        "value": "pending"
+      },
+      {
+        "label": "Scheduled",
+        "value": "scheduled"
+      },
+      {
+        "label": "Cancelled",
+        "value": "cancelled"
+      }
+    ]
+  },
+  {
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10,
+    "validate": {
+      "max": 50
+    }
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "name": "downloadSendReport",
+  "type": "action",
+  "label": "Download a Send Report",
+  "description": "Downloads the PDF send report of a fax."
+}

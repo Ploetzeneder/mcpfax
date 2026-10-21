@@ -1,0 +1,12 @@
+{
+  "url": "/contacts",
+  "method": "POST",
+  "body": {
+    "name": "{{parameters.name}}",
+    "fax_number": "{{parameters.fax_number}}",
+    "note": "{{ifempty(parameters.note, undefined)}}"
+  },
+  "response": {
+    "output": "{{body}}"
+  }
+}
