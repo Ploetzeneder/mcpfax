@@ -101,10 +101,12 @@ Ready-made integrations in [`integrations/`](integrations/):
 
 | Platform | Folder | What's inside |
 |---|---|---|
-| **n8n** | [`integrations/n8n`](integrations/n8n) | Community node `n8n-nodes-mcpfax` (actions + polling trigger) |
-| **Zapier** | [`integrations/zapier`](integrations/zapier) | Zapier Platform CLI app (Send Fax, Get Price, Find Fax, triggers *Fax Delivered* / *Fax Failed*) |
-| **Make** | [`integrations/make`](integrations/make) | Custom app (IML): 12 modules incl. watch triggers |
+| **n8n** | [`integrations/n8n`](integrations/n8n) | Community node [`n8n-nodes-mcpfax`](https://www.npmjs.com/package/n8n-nodes-mcpfax) – install via *Settings → Community Nodes* |
+| **Zapier** | [`integrations/zapier`](integrations/zapier) | [Use mcpfax in Zapier](https://zapier.com/developer/public-invite/248319/ed488a863381a4a398e5696c3675158c/) – Send Fax, Get Price, Find Fax, triggers *Fax Delivered* / *Fax Failed* |
+| **Make** | [`integrations/make`](integrations/make) | [Use mcpfax in Make](https://www.make.com/en/hq/app-invitation/0047d280b8c65fded6b426225c656848) – 12 modules incl. watch triggers |
 | **Activepieces** | [`integrations/activepieces`](integrations/activepieces) | Piece `@activepieces/piece-mcpfax` |
+
+Overview and setup guide: https://mcpfax.de/integrations.php
 
 All of them use the REST API with an API key and offer the same core operations: send a fax (file, text or URL), get the price, get the status, resend, cancel a scheduled fax, download the PDF send report, balance and address book.
 
