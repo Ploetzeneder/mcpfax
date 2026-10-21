@@ -3,7 +3,7 @@ const { API, sampleFax, faxOutputFields } = require('../common');
 const make = (status, label, description) => ({
   key: `fax_${status}`,
   noun: 'Fax',
-  display: { label, description, important: status === 'delivered' },
+  display: { label, description },
   operation: {
     type: 'polling',
     perform: async (z) => {

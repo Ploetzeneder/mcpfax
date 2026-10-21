@@ -6,7 +6,6 @@ module.exports = {
   display: {
     label: 'Send Fax',
     description: 'Sends a document or text as a real fax. Costs prepaid credit.',
-    important: true,
   },
   operation: {
     inputFields: [
