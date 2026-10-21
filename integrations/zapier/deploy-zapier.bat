@@ -5,7 +5,9 @@ where node >nul 2>nul || (echo Node.js fehlt. Bitte von https://nodejs.org insta
 echo [1/4] Pakete installieren ...
 call npm install --no-audit --no-fund || goto :err
 echo [2/4] Bei Zapier anmelden (Deploy-Key einfuegen, wenn gefragt) ...
-call npx -y zapier-platform-cli@16.5.0 login --sso || goto :err
+if not exist "%USERPROFILE%\.zapierrc" (
+  call npx -y zapier-platform-cli@16.5.0 login --sso || goto :err
+)
 if not exist .zapierapprc (
   echo [3/4] Mit der bestehenden Integration "mcpfax" verknuepfen ...
   call npx -y zapier-platform-cli@16.5.0 link || goto :err
