@@ -1,6 +1,5 @@
 import { PieceAuth } from '@activepieces/pieces-framework';
-import { httpClient, HttpMethod } from '@activepieces/pieces-common';
-import { MCPFAX_API } from './common';
+import { AuthenticationType, httpClient, HttpMethod } from '@activepieces/pieces-common';
 
 export const mcpfaxAuth = PieceAuth.SecretText({
   displayName: 'API Key',
@@ -13,8 +12,8 @@ export const mcpfaxAuth = PieceAuth.SecretText({
     try {
       await httpClient.sendRequest({
         method: HttpMethod.GET,
-        url: `${MCPFAX_API}/balance`,
-        headers: { Authorization: `Bearer ${auth}` },
+        url: 'https://mcpfax.de/api/v1/balance',
+        authentication: { type: AuthenticationType.BEARER_TOKEN, token: auth },
       });
       return { valid: true };
     } catch {

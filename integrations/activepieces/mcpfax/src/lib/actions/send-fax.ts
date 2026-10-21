@@ -1,14 +1,14 @@
 import { createAction, Property } from '@activepieces/pieces-framework';
 import { HttpMethod } from '@activepieces/pieces-common';
 import { mcpfaxAuth } from '../auth';
-import { documentBody, documentProps, faxNumberProp, mcpfaxRequest, optional } from '../common';
+import { mcpfaxClient, mcpfaxProps } from '../common';
 
 export const sendFax = createAction({
   auth: mcpfaxAuth,
   name: 'send_fax',
+  classification: 'WRITE',
   displayName: 'Send Fax',
   description: 'Send a document or text as a real fax. Costs prepaid credit.',
-  classification: 'WRITE',
   audience: 'both',
   aiMetadata: {
     description:
@@ -16,8 +16,8 @@ export const sendFax = createAction({
     idempotent: false,
   },
   props: {
-    recipient_fax_number: faxNumberProp,
-    ...documentProps,
+    recipient_fax_number: mcpfaxProps.faxNumber,
+    ...mcpfaxProps.document,
     max_cost: Property.Number({
       displayName: 'Max Cost',
       description: 'Safety limit in your account currency – the fax is not sent if it would cost more.',
@@ -30,18 +30,26 @@ export const sendFax = createAction({
     }),
   },
   async run({ auth, propsValue }) {
-    const p = propsValue;
-    return await mcpfaxRequest(auth.secret_text, HttpMethod.POST, '/fax/send', {
-      recipient_fax_number: p.recipient_fax_number,
-      ...documentBody(p),
-      ...optional({
-        recipient_name: p.recipient_name,
-        cover_page: p.cover_page,
-        subject: p.subject,
-        send_at: p.send_at,
-        max_cost: p.max_cost,
-        idempotency_key: p.idempotency_key,
-      }),
+    return await mcpfaxClient.request({
+      apiKey: auth.secret_text,
+      method: HttpMethod.POST,
+      path: '/fax/send',
+      body: {
+        recipient_fax_number: propsValue.recipient_fax_number,
+        ...mcpfaxClient.documentBody({
+          file: propsValue.file,
+          content: propsValue.content,
+          fileUrl: propsValue.file_url,
+        }),
+        ...mcpfaxClient.withoutEmpty({
+          recipient_name: propsValue.recipient_name,
+          cover_page: propsValue.cover_page,
+          subject: propsValue.subject,
+          send_at: propsValue.send_at,
+          max_cost: propsValue.max_cost,
+          idempotency_key: propsValue.idempotency_key,
+        }),
+      },
     });
   },
 });

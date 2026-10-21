@@ -1,27 +1,42 @@
 import { createAction } from '@activepieces/pieces-framework';
 import { HttpMethod } from '@activepieces/pieces-common';
 import { mcpfaxAuth } from '../auth';
-import { documentBody, documentProps, faxNumberProp, mcpfaxRequest, optional } from '../common';
+import { mcpfaxClient, mcpfaxProps } from '../common';
 
 export const getFaxPrice = createAction({
   auth: mcpfaxAuth,
   name: 'get_fax_price',
+  classification: 'READ',
   displayName: 'Get Fax Price',
   description: 'Validate the fax number, count pages and get the exact cost. Sends nothing.',
-  classification: 'READ',
   audience: 'both',
   aiMetadata: {
     description:
       'Returns a price quote for a fax: normalized number, destination country, page count, cost and whether the balance is sufficient. Read-only and free.',
     idempotent: true,
   },
-  props: { recipient_fax_number: faxNumberProp, ...documentProps },
+  props: {
+    recipient_fax_number: mcpfaxProps.faxNumber,
+    ...mcpfaxProps.document,
+  },
   async run({ auth, propsValue }) {
-    const p = propsValue;
-    return await mcpfaxRequest(auth.secret_text, HttpMethod.POST, '/fax/price', {
-      recipient_fax_number: p.recipient_fax_number,
-      ...documentBody(p),
-      ...optional({ recipient_name: p.recipient_name, cover_page: p.cover_page, send_at: p.send_at }),
+    return await mcpfaxClient.request({
+      apiKey: auth.secret_text,
+      method: HttpMethod.POST,
+      path: '/fax/price',
+      body: {
+        recipient_fax_number: propsValue.recipient_fax_number,
+        ...mcpfaxClient.documentBody({
+          file: propsValue.file,
+          content: propsValue.content,
+          fileUrl: propsValue.file_url,
+        }),
+        ...mcpfaxClient.withoutEmpty({
+          recipient_name: propsValue.recipient_name,
+          cover_page: propsValue.cover_page,
+          send_at: propsValue.send_at,
+        }),
+      },
     });
   },
 });
