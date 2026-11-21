@@ -1,0 +1,11 @@
+{
+  "name": "mcpfax",
+  "description": "Send real faxes worldwide from your AI assistant. Prepaid, no subscription, PDF send report.",
+  "version": "1.0.0",
+  "author": { "name": "PIT Webservices GmbH" },
+  "homepage": "https://mcpfax.de",
+  "repository": "https://github.com/Ploetzeneder/mcpfax",
+  "license": "MIT",
+  "keywords": ["fax", "mcp", "oauth", "communication"],
+  "logo": "https://mcpfax.de/assets/app-icon-1024.png"
+}
