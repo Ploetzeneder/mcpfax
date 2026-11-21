@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "mcpfax",
-  "version": "1.0.2",
-  "description": "Send real faxes worldwide from ChatGPT. Prepaid balance, no subscription, transmission report as PDF. Operated by PIT Webservices GmbH.",
+  "version": "1.0.3",
+  "description": "Send real faxes worldwide from ChatGPT. Transmission report as PDF. Operated by PIT Webservices GmbH.",
   "author": {
     "name": "PIT Webservices GmbH",
     "email": "support@mcpfax.de",
@@ -21,7 +21,7 @@
       "interface": {
         "displayName": "Fax senden",
         "shortDescription": "Send real faxes from chat",
-        "longDescription": "Fax senden sends real faxes to fax numbers worldwide, straight from your conversation. Give ChatGPT a document or text and a fax number: it checks the exact price first, asks for your confirmation, and only then sends.\n\nWhat you can do:\n- Get an exact price quote before anything is sent (number check, page count, cost)\n- Send a fax (text, uploaded file, or a PDF via a private upload link), optionally with a cover page\n- Schedule a fax for later and cancel it with a full refund while it is still scheduled\n- Check delivery status, browse your fax history, resend a fax\n- Keep an address book of fax recipients\n- Check your prepaid balance\n\nPrepaid, no subscription: you top up a balance and pay per fax (zone 1 countries: EUR 1.00 first page + EUR 0.20 per additional page, other countries double; final prices incl. VAT). Sign-in uses OAuth. Outbound only: Fax senden cannot receive faxes, and it must not be used for unsolicited advertising faxes.\n\nFax senden is operated by PIT Webservices GmbH (Austria). Support: support@mcpfax.de",
+        "longDescription": "Fax senden sends real faxes to fax numbers worldwide, straight from your conversation. Give ChatGPT a document or text and a fax number: it checks the exact price first, asks for your confirmation, and only then sends.\n\nWhat you can do:\n- Get an exact price quote before anything is sent (number check, page count, cost)\n- Send a fax (text, uploaded file, or a PDF via a private upload link), optionally with a cover page\n- Schedule a fax for later and cancel it with a full refund while it is still scheduled\n- Check delivery status, browse your fax history, resend a fax\n- Keep an address book of fax recipients\n- Check your account balance\n\nSign-in uses OAuth. Outbound only: Fax senden cannot receive faxes, and it must not be used for unsolicited advertising faxes.\n\nFax senden is operated by PIT Webservices GmbH (Austria). Support: support@mcpfax.de",
         "developerName": "PIT Webservices GmbH",
         "category": "Communication",
         "capabilities": [
@@ -94,11 +94,11 @@
         }
       },
       "publication": {
-        "release_notes": "1.0.2: display name \"Fax senden\", neutral naming. 1.0.1: review-ready update (test cases refined for the sandbox review account). 1.0.0: initial release with fax price quote, send fax (text, file, upload link), scheduled faxes with cancel/refund, status and history, resend, address book, prepaid balance. OAuth sign-in.",
+        "release_notes": "1.0.3: pricing removed from descriptions. 1.0.2: display name \"Fax senden\", neutral naming. 1.0.1: review-ready update (test cases refined for the sandbox review account). 1.0.0: initial release with fax price quote, send fax (text, file, upload link), scheduled faxes with cancel/refund, status and history, resend, address book, prepaid balance. OAuth sign-in.",
         "translations": {
           "de-DE": {
             "subtitle": "Echte Faxe direkt aus dem Chat",
-            "description": "Fax senden sendet echte Faxe an Faxnummern weltweit, direkt aus dem Gespräch. Geben Sie ChatGPT ein Dokument oder einen Text und eine Faxnummer: Der Assistent prüft zuerst den genauen Preis, fragt nach Ihrer Bestätigung und sendet erst dann.\n\nDas können Sie tun:\n- Genauen Preis vorab erfragen (Nummernprüfung, Seitenzahl, Kosten)\n- Fax senden (Text, hochgeladene Datei oder PDF über einen privaten Upload-Link), optional mit Deckblatt\n- Fax für später planen und bis zum Versand mit voller Erstattung stornieren\n- Zustellstatus prüfen, Faxverlauf ansehen, Fax erneut senden\n- Adressbuch für Faxempfänger führen\n- Prepaid-Guthaben abfragen\n\nPrepaid, ohne Abo: Sie laden Guthaben auf und zahlen pro Fax (Zone 1: 1,00 EUR erste Seite + 0,20 EUR je weitere Seite, übrige Länder das Doppelte; Endpreise inkl. USt). Anmeldung per OAuth. Nur Versand: Fax senden kann keine Faxe empfangen und darf nicht für unerwünschte Werbefaxe verwendet werden.\n\nBetreiber: PIT Webservices GmbH (Österreich). Support: support@mcpfax.de"
+            "description": "Fax senden sendet echte Faxe an Faxnummern weltweit, direkt aus dem Gespräch. Geben Sie ChatGPT ein Dokument oder einen Text und eine Faxnummer: Der Assistent prüft zuerst den genauen Preis, fragt nach Ihrer Bestätigung und sendet erst dann.\n\nDas können Sie tun:\n- Genauen Preis vorab erfragen (Nummernprüfung, Seitenzahl, Kosten)\n- Fax senden (Text, hochgeladene Datei oder PDF über einen privaten Upload-Link), optional mit Deckblatt\n- Fax für später planen und bis zum Versand mit voller Erstattung stornieren\n- Zustellstatus prüfen, Faxverlauf ansehen, Fax erneut senden\n- Adressbuch für Faxempfänger führen\n- Guthaben abfragen\n\nAnmeldung per OAuth. Nur Versand: Fax senden kann keine Faxe empfangen und darf nicht für unerwünschte Werbefaxe verwendet werden.\n\nBetreiber: PIT Webservices GmbH (Österreich). Support: support@mcpfax.de"
           }
         }
       }
