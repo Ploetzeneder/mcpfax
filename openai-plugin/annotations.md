@@ -1,20 +1,28 @@
 # Tool annotations (text for the review form)
 
-All 10 tools are declared on the production server (`https://mcpfax.de/mcp`, `tools/list`) with `title`, `readOnlyHint`, `destructiveHint`, `openWorldHint` (plus `idempotentHint`).
+Live on `https://mcpfax.de/mcp` (`tools/list`, verified 21.11.2026). All 10 tools declare `title`, `readOnlyHint`, `destructiveHint`, `openWorldHint` and `idempotentHint`.
 
-| Tool | title | readOnly | destructive | openWorld | Justification |
+| Tool | title | readOnly | destructive | openWorld | idempotent |
 |---|---|---|---|---|---|
-| get_fax_price | Check fax price | true | false | false | Only validates the number and counts pages to compute a quote. Sends nothing, charges nothing, changes no data, contacts no external party. |
-| send_fax | Send fax | false | false | true | Sends a real fax to an arbitrary third-party fax number via the fax network (open world) and charges the prepaid balance. It only adds a new fax and does not delete or overwrite existing data, so not destructive; the assistant must get the user's explicit confirmation with price first. |
-| create_upload_link | Create upload link | false | false | false | Creates a private, 24-hour upload link inside the user's own account (a new record, nothing deleted). No external party is contacted. |
-| get_fax_status | Get fax status | true | false | false | Reads the delivery status of one of the user's own faxes from mcpfax's own records. No changes, no external side effects. |
-| get_fax_history | Fax history | true | false | false | Lists the user's own faxes from mcpfax's own records. Read-only. |
-| resend_fax | Resend fax | false | false | true | Sends the stored original document again to the same third-party fax number (open world) and charges the balance again. Adds a new fax, deletes nothing; requires explicit user confirmation. |
-| cancel_scheduled_fax | Cancel scheduled fax | false | true | false | Cancels a fax that is still scheduled: the pending fax is discarded (irreversible) and the reserved amount is refunded. Only affects the user's own account; no third party is contacted. |
-| find_contact | Find fax contact | true | false | false | Searches the user's own address book. Read-only. |
-| save_contact | Save fax contact | false | false | false | Creates or updates an entry in the user's own address book (free). Updating via contact_id overwrites only the fields of that entry the user asked to change; no external party. Not treated as destructive (no data loss beyond the edited entry). |
-| get_account_balance | Account balance | true | false | false | Reads the user's own prepaid balance, prices and today's limit. Read-only. |
+| get_fax_price | Preview fax | true | false | true | true |
+| send_fax | Send fax | false | true | true | false |
+| create_upload_link | Create upload link | false | false | false | false |
+| get_fax_status | Get fax status | true | false | false | true |
+| get_fax_history | Fax history | true | false | false | true |
+| resend_fax | Resend fax | false | true | true | false |
+| cancel_scheduled_fax | Cancel scheduled fax | false | true | false | true |
+| find_contact | Find fax contact | true | false | false | true |
+| save_contact | Save fax contact | false | true | false | true |
+| get_account_balance | Account balance | true | false | false | true |
 
-Notes
-- No tool renders external iframes, so no frame-domain explanation is needed (the confirmation card widget is served from mcpfax's own MCP resource).
-- Open world = true only for send_fax and resend_fax (they transmit data to third-party fax machines).
+## Notes per tool
+
+- **get_fax_price** (readOnly, not destructive): validates the number and counts pages to prepare a preview. Sends nothing and changes no data. openWorld is set to true as a conservative choice; it contacts no fax machine.
+- **send_fax** (destructive, openWorld): transmits a real fax to a third-party fax number and debits the account balance. Once handed to the fax network it cannot be recalled, so destructiveHint is true. The assistant must get the user's explicit confirmation first. Retries: a repeated `idempotency_key` for the same account never sends a second fax.
+- **resend_fax** (destructive, openWorld): sends the stored document again to the same third-party number and debits the balance again. Requires explicit confirmation.
+- **cancel_scheduled_fax** (destructive): discards a scheduled fax before it is sent (irreversible); the reserved amount is refunded to the account. Only the user's own account is affected.
+- **save_contact** (destructive): creates or updates an address-book entry. Passing `contact_id` overwrites the stored name and number of that entry, so destructiveHint is true. No external party is contacted.
+- **create_upload_link**: creates a private 24-hour upload link in the user's own account. Nothing is deleted or sent.
+- **get_fax_status**, **get_fax_history**, **find_contact**, **get_account_balance**: read-only queries on the user's own account data.
+
+openWorldHint is true only for the tools that transmit to third-party fax machines (send_fax, resend_fax) and for get_fax_price (conservative).
