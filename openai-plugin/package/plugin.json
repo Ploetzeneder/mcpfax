@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "mcpfax",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Send real faxes worldwide from ChatGPT. Prepaid balance, no subscription, transmission report as PDF. Operated by PIT Webservices GmbH.",
   "author": {
     "name": "PIT Webservices GmbH",
@@ -11,7 +11,12 @@
   "homepage": "https://mcpfax.de",
   "repository": "https://github.com/Ploetzeneder/mcpfax",
   "license": "MIT",
-  "keywords": ["fax", "mcp", "oauth", "communication"],
+  "keywords": [
+    "fax",
+    "mcp",
+    "oauth",
+    "communication"
+  ],
   "extensions": {
     "com.openai": {
       "interface": {
@@ -52,7 +57,7 @@
               "description": "Send a text fax with price quote and explicit confirmation before sending.",
               "prompt": "Please fax this text to +49 30 1234567 (recipient: Test GmbH): \"Hello, this is a test fax from the reviewer. Please ignore.\"",
               "tools_triggered": "get_fax_price, send_fax",
-              "expected_behavior": "The assistant first calls get_fax_price and shows recipient, fax number, pages and cost and asks \"Shall I send the fax now?\". Only after the user answers yes it calls send_fax and reports fax_id and status (sent/pending, not yet delivered)."
+              "expected_behavior": "The assistant first calls get_fax_price and shows recipient, fax number, pages and cost and asks \"Shall I send the fax now?\". Only after the user answers yes it calls send_fax and reports fax_id and the returned status (never claims the recipient read it). On the sandbox review account the fax is simulated and may show 'delivered' immediately; nothing is transmitted."
             },
             {
               "description": "Balance, history and status of earlier faxes (read-only).",
@@ -90,7 +95,7 @@
         }
       },
       "publication": {
-        "release_notes": "Initial public release: fax price quote, send fax (text, file, upload link), scheduled faxes with cancel/refund, status and history, resend, address book, prepaid balance. OAuth sign-in.",
+        "release_notes": "1.0.1: review-ready update (test cases refined for the sandbox review account). 1.0.0: initial release with fax price quote, send fax (text, file, upload link), scheduled faxes with cancel/refund, status and history, resend, address book, prepaid balance. OAuth sign-in.",
         "translations": {
           "de-DE": {
             "subtitle": "Echte Faxe direkt aus dem Chat",

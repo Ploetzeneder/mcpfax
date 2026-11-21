@@ -1,7 +1,7 @@
 # ChatGPT Plugin Directory package (mcpfax)
 
 - `package/` – sources (Agent Plugins format: `plugin.json`, `mcp.json`, `skills/mcpfax/SKILL.md`, `assets/logo.png`)
-- `mcpfax-openai-plugin-1.0.0.zip` – upload-ready ZIP (plugin files at archive root)
+- `mcpfax-openai-plugin-1.0.1.zip` – upload-ready ZIP (plugin files at archive root)
 
 Rebuild: `cd package && zip -X -r ../mcpfax-openai-plugin-<version>.zip plugin.json mcp.json skills assets`
 
