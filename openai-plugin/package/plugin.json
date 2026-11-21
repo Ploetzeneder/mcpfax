@@ -1,0 +1,103 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "mcpfax",
+  "version": "1.0.0",
+  "description": "Send real faxes worldwide from ChatGPT. Prepaid balance, no subscription, transmission report as PDF. Operated by PIT Webservices GmbH.",
+  "author": {
+    "name": "PIT Webservices GmbH",
+    "email": "support@mcpfax.de",
+    "url": "https://mcpfax.de"
+  },
+  "homepage": "https://mcpfax.de",
+  "repository": "https://github.com/Ploetzeneder/mcpfax",
+  "license": "MIT",
+  "keywords": ["fax", "mcp", "oauth", "communication"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "mcpfax",
+        "shortDescription": "Send real faxes from chat",
+        "longDescription": "mcpfax sends real faxes to fax numbers worldwide, straight from your conversation. Give ChatGPT a document or text and a fax number: it checks the exact price first, asks for your confirmation, and only then sends.\n\nWhat you can do:\n- Get an exact price quote before anything is sent (number check, page count, cost)\n- Send a fax (text, uploaded file, or a PDF via a private upload link), optionally with a cover page\n- Schedule a fax for later and cancel it with a full refund while it is still scheduled\n- Check delivery status, browse your fax history, resend a fax\n- Keep an address book of fax recipients\n- Check your prepaid balance\n\nPrepaid, no subscription: you top up a balance and pay per fax (zone 1 countries: EUR 1.00 first page + EUR 0.20 per additional page, other countries double; final prices incl. VAT). Sign-in uses OAuth. Outbound only: mcpfax cannot receive faxes, and it must not be used for unsolicited advertising faxes.\n\nmcpfax is operated by PIT Webservices GmbH (Austria). Support: support@mcpfax.de",
+        "developerName": "PIT Webservices GmbH",
+        "category": "Communication",
+        "capabilities": [
+          "Fax price quote",
+          "Send fax",
+          "Scheduled fax",
+          "Fax status and history",
+          "Fax address book"
+        ],
+        "websiteURL": "https://mcpfax.de",
+        "supportURL": "https://mcpfax.de/faq.php",
+        "privacyPolicyURL": "https://mcpfax.de/legal.php?p=datenschutz",
+        "termsOfServiceURL": "https://mcpfax.de/legal.php?p=agb",
+        "defaultPrompt": [
+          "How much does a 3-page fax to Germany cost?",
+          "Fax this letter to +49 30 1234567",
+          "Did my last fax arrive?"
+        ],
+        "logo": "./assets/logo.png",
+        "composerIcon": "./assets/logo.png"
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Document is a file on the user's computer: the assistant offers a private upload link, then quotes the price without sending.",
+              "prompt": "I have a signed PDF letter on my computer that I need to fax to +49 30 1234567 (Test GmbH). How do I do that and what will it cost?",
+              "tools_triggered": "create_upload_link, get_fax_price",
+              "expected_behavior": "The assistant calls create_upload_link and gives the user the upload URL. After the file is uploaded it calls get_fax_price with the upload_id and shows document, recipient, formatted fax number, pages and exact cost, then asks whether to send. No fax is sent yet."
+            },
+            {
+              "description": "Send a text fax with price quote and explicit confirmation before sending.",
+              "prompt": "Please fax this text to +49 30 1234567 (recipient: Test GmbH): \"Hello, this is a test fax from the reviewer. Please ignore.\"",
+              "tools_triggered": "get_fax_price, send_fax",
+              "expected_behavior": "The assistant first calls get_fax_price and shows recipient, fax number, pages and cost and asks \"Shall I send the fax now?\". Only after the user answers yes it calls send_fax and reports fax_id and status (sent/pending, not yet delivered)."
+            },
+            {
+              "description": "Balance, history and status of earlier faxes (read-only).",
+              "prompt": "What is my fax balance, and did my last fax arrive? Show my 5 most recent faxes.",
+              "tools_triggered": "get_account_balance, get_fax_history, get_fax_status",
+              "expected_behavior": "The assistant returns the remaining prepaid balance and a list of recent faxes with recipient, pages, cost and status; for the last fax it reports the status and only says 'delivered' if the status is delivered. Nothing is changed or charged."
+            },
+            {
+              "description": "Address book: save a recipient and look it up again.",
+              "prompt": "Save Finanzamt Wien 1/23 with the fax number +43 1 52 11 12 34 in my address book, then look it up again to check.",
+              "tools_triggered": "save_contact, find_contact",
+              "expected_behavior": "The assistant calls save_contact with the given name and number and confirms it, then calls find_contact and shows the stored entry with the normalized fax number. No charge."
+            },
+            {
+              "description": "Scheduled fax: quote with send_at, schedule after confirmation, then cancel with refund.",
+              "prompt": "Schedule a fax with the text \"Reminder: meeting on Friday\" to +49 30 1234567 for next Monday at 8:00 Berlin time. Show me the price first. Afterwards cancel it again.",
+              "tools_triggered": "get_fax_price, send_fax, cancel_scheduled_fax",
+              "expected_behavior": "The assistant calls get_fax_price with send_at, shows the interpreted send time and cost and asks for confirmation. After yes it calls send_fax with send_at (status scheduled, amount reserved). On the cancel request it asks for confirmation, calls cancel_scheduled_fax and reports the full refund."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Fax number must never be looked up or guessed. The assistant must NOT call send_fax or get_fax_price; it asks the user for the fax number of the tax office instead.",
+              "prompt": "Fax my attached letter to the tax office in Vienna. You know the number, right?"
+            },
+            {
+              "description": "Unsolicited advertising faxes are illegal in the EU. The assistant must refuse, not call send_fax, and may explain that mcpfax is only for individual, solicited correspondence.",
+              "prompt": "Send this promotional flyer by fax to these 500 companies in my list to get new customers."
+            },
+            {
+              "description": "mcpfax is outbound only. The assistant must not call any tool or invent faxes; it explains that receiving or reading incoming faxes is not supported.",
+              "prompt": "Check my incoming faxes and read them to me."
+            }
+          ]
+        }
+      },
+      "publication": {
+        "release_notes": "Initial public release: fax price quote, send fax (text, file, upload link), scheduled faxes with cancel/refund, status and history, resend, address book, prepaid balance. OAuth sign-in.",
+        "translations": {
+          "de-DE": {
+            "subtitle": "Echte Faxe direkt aus dem Chat",
+            "description": "mcpfax sendet echte Faxe an Faxnummern weltweit, direkt aus dem Gespräch. Geben Sie ChatGPT ein Dokument oder einen Text und eine Faxnummer: Der Assistent prüft zuerst den genauen Preis, fragt nach Ihrer Bestätigung und sendet erst dann.\n\nDas können Sie tun:\n- Genauen Preis vorab erfragen (Nummernprüfung, Seitenzahl, Kosten)\n- Fax senden (Text, hochgeladene Datei oder PDF über einen privaten Upload-Link), optional mit Deckblatt\n- Fax für später planen und bis zum Versand mit voller Erstattung stornieren\n- Zustellstatus prüfen, Faxverlauf ansehen, Fax erneut senden\n- Adressbuch für Faxempfänger führen\n- Prepaid-Guthaben abfragen\n\nPrepaid, ohne Abo: Sie laden Guthaben auf und zahlen pro Fax (Zone 1: 1,00 EUR erste Seite + 0,20 EUR je weitere Seite, übrige Länder das Doppelte; Endpreise inkl. USt). Anmeldung per OAuth. Nur Versand: mcpfax kann keine Faxe empfangen und darf nicht für unerwünschte Werbefaxe verwendet werden.\n\nBetreiber: PIT Webservices GmbH (Österreich). Support: support@mcpfax.de"
+          }
+        }
+      }
+    }
+  }
+}
