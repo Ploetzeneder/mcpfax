@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "mcpfax",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Send real faxes worldwide from ChatGPT. Transmission report as PDF. Operated by PIT Webservices GmbH.",
   "author": {
     "name": "PIT Webservices GmbH",
@@ -13,15 +13,24 @@
   "license": "MIT",
   "keywords": [
     "fax",
-    "oauth",
-    "communication"
+    "send fax",
+    "faxen",
+    "facsimile",
+    "outbound fax",
+    "fax machine",
+    "transmission report",
+    "cover page",
+    "fax number",
+    "PDF fax",
+    "scheduled fax",
+    "fax status"
   ],
   "extensions": {
     "com.openai": {
       "interface": {
-        "displayName": "Fax senden",
+        "displayName": "mcpfax",
         "shortDescription": "Send real faxes from chat",
-        "longDescription": "Fax senden sends real faxes to fax numbers worldwide, straight from your conversation. Give ChatGPT a document or text and a fax number: it prepares a preview (number check, page count, amount), asks for your confirmation, and only then sends.\n\nWhat you can do:\n- Preview a fax before anything is sent (number check, page count, amount)\n- Send a fax (text, uploaded file, or a PDF via a private upload link), optionally with a cover page\n- Schedule a fax for later and cancel it while it is still scheduled\n- Check delivery status, browse your fax history, resend a fax\n- Keep an address book of fax recipients\n- Check your account balance\n\nSign-in uses OAuth. Outbound only: Fax senden cannot receive faxes, and it must not be used for unsolicited advertising faxes.\n\nFax senden is operated by PIT Webservices GmbH (Austria). Support: support@mcpfax.de",
+        "longDescription": "mcpfax sends real outbound faxes to fax numbers worldwide, straight from your conversation. Give ChatGPT a document or text and a fax number: it prepares a preview (number check, page count, amount), asks for your confirmation, and only then sends.\n\nWhat you can do:\n- Preview a fax before anything is sent (number check, page count, amount)\n- Send a fax (text, uploaded file, or a PDF via a private upload link), optionally with a cover page\n- Schedule a fax for later and cancel it while it is still scheduled\n- Check delivery status, browse your fax history, resend a fax\n- Keep an address book of fax recipients\n- Check your account balance\n\nSign-in uses OAuth. Outbound only: mcpfax cannot receive faxes, and it must not be used for unsolicited advertising faxes.\n\nmcpfax is operated by PIT Webservices GmbH (Austria). Support: support@mcpfax.de",
         "developerName": "PIT Webservices GmbH",
         "category": "Communication",
         "capabilities": [
@@ -83,22 +92,22 @@
               "prompt": "Fax my attached letter to the tax office in Vienna. You know the number, right?"
             },
             {
-              "description": "Unsolicited advertising faxes are illegal in the EU. The assistant must refuse, not call send_fax, and may explain that Fax senden is only for individual, solicited correspondence.",
+              "description": "Unsolicited advertising faxes are illegal in the EU. The assistant must refuse, not call send_fax, and may explain that mcpfax is only for individual, solicited correspondence.",
               "prompt": "Send this promotional flyer by fax to these 500 companies in my list to get new customers."
             },
             {
-              "description": "Fax senden is outbound only. The assistant must not call any tool or invent faxes; it explains that receiving or reading incoming faxes is not supported.",
+              "description": "mcpfax is outbound only. The assistant must not call any tool or invent faxes; it explains that receiving or reading incoming faxes is not supported.",
               "prompt": "Check my incoming faxes and read them to me."
             }
           ]
         }
       },
       "publication": {
-        "release_notes": "1.0.4: wording and response cleanup for the plugin guidelines (descriptions, instructions, skill, test cases). 1.0.3: descriptions cleaned up. 1.0.2: display name \"Fax senden\", neutral naming. 1.0.1: review-ready update (test cases refined for the sandbox review account). 1.0.0: initial release with fax preview, send fax (text, file, upload link), scheduled faxes with cancel/refund, status and history, resend, address book, account balance. OAuth sign-in.",
+        "release_notes": "1.0.5: display name mcpfax (brand), expanded keywords, long description wording. 1.0.4: wording and response cleanup for the plugin guidelines (descriptions, instructions, skill, test cases). 1.0.3: descriptions cleaned up. 1.0.2: display name \"Fax senden\", neutral naming. 1.0.1: review-ready update (test cases refined for the sandbox review account). 1.0.0: initial release with fax preview, send fax (text, file, upload link), scheduled faxes with cancel/refund, status and history, resend, address book, account balance. OAuth sign-in.",
         "translations": {
           "de-DE": {
             "subtitle": "Echte Faxe direkt aus dem Chat",
-            "description": "Fax senden sendet echte Faxe an Faxnummern weltweit, direkt aus dem Gespräch. Geben Sie ChatGPT ein Dokument oder einen Text und eine Faxnummer: Der Assistent zeigt zuerst eine Vorschau, fragt nach Ihrer Bestätigung und sendet erst dann.\n\nDas können Sie tun:\n- Vorschau vor dem Versand (Nummernprüfung, Seitenzahl, Betrag)\n- Fax senden (Text, hochgeladene Datei oder PDF über einen privaten Upload-Link), optional mit Deckblatt\n- Fax für später planen und bis zum Versand stornieren\n- Zustellstatus prüfen, Faxverlauf ansehen, Fax erneut senden\n- Adressbuch für Faxempfänger führen\n- Kontostand abfragen\n\nAnmeldung per OAuth. Nur Versand: Fax senden kann keine Faxe empfangen und darf nicht für unerwünschte Werbefaxe verwendet werden.\n\nBetreiber: PIT Webservices GmbH (Österreich). Support: support@mcpfax.de"
+            "description": "mcpfax sendet echte Faxe an Faxnummern weltweit, direkt aus dem Gespräch. Geben Sie ChatGPT ein Dokument oder einen Text und eine Faxnummer: Der Assistent zeigt zuerst eine Vorschau, fragt nach Ihrer Bestätigung und sendet erst dann.\n\nDas können Sie tun:\n- Vorschau vor dem Versand (Nummernprüfung, Seitenzahl, Betrag)\n- mcpfax (Text, hochgeladene Datei oder PDF über einen privaten Upload-Link), optional mit Deckblatt\n- Fax für später planen und bis zum Versand stornieren\n- Zustellstatus prüfen, Faxverlauf ansehen, Fax erneut senden\n- Adressbuch für Faxempfänger führen\n- Kontostand abfragen\n\nAnmeldung per OAuth. Nur Versand: mcpfax kann keine Faxe empfangen und darf nicht für unerwünschte Werbefaxe verwendet werden.\n\nBetreiber: PIT Webservices GmbH (Österreich). Support: support@mcpfax.de"
           }
         }
       }
