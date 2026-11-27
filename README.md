@@ -41,6 +41,7 @@ Then just ask: *"Fax this PDF to +49 30 1234567"* – the assistant shows pages 
 | `get_fax_history` | Recent faxes |
 | `resend_fax` | Sends a previous fax again |
 | `cancel_scheduled_fax` | Cancels a scheduled fax with full refund |
+| `create_upload_link` | Creates a private 24-hour upload link when a file cannot be passed directly – sends nothing |
 | `get_account_balance` | Prepaid balance |
 | `find_contact` / `save_contact` | Fax address book |
 
