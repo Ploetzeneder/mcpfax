@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "mcpfax",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Send real faxes worldwide from ChatGPT. Transmission report as PDF. Operated by PIT Webservices GmbH.",
   "author": {
     "name": "PIT Webservices GmbH",
@@ -103,11 +103,11 @@
         }
       },
       "publication": {
-        "release_notes": "1.0.5: display name mcpfax (brand), expanded keywords, long description wording. 1.0.4: wording and response cleanup for the plugin guidelines (descriptions, instructions, skill, test cases). 1.0.3: descriptions cleaned up. 1.0.2: display name \"Fax senden\", neutral naming. 1.0.1: review-ready update (test cases refined for the sandbox review account). 1.0.0: initial release with fax preview, send fax (text, file, upload link), scheduled faxes with cancel/refund, status and history, resend, address book, account balance. OAuth sign-in.",
+        "release_notes": "1.0.6: German description wording (action phrasing). 1.0.5: display name mcpfax (brand), expanded keywords, long description wording. 1.0.4: wording and response cleanup for the plugin guidelines (descriptions, instructions, skill, test cases). 1.0.3: descriptions cleaned up. 1.0.2: display name \"Fax senden\", neutral naming. 1.0.1: review-ready update (test cases refined for the sandbox review account). 1.0.0: initial release with fax preview, send fax (text, file, upload link), scheduled faxes with cancel/refund, status and history, resend, address book, account balance. OAuth sign-in.",
         "translations": {
           "de-DE": {
             "subtitle": "Echte Faxe direkt aus dem Chat",
-            "description": "mcpfax sendet echte Faxe an Faxnummern weltweit, direkt aus dem Gespräch. Geben Sie ChatGPT ein Dokument oder einen Text und eine Faxnummer: Der Assistent zeigt zuerst eine Vorschau, fragt nach Ihrer Bestätigung und sendet erst dann.\n\nDas können Sie tun:\n- Vorschau vor dem Versand (Nummernprüfung, Seitenzahl, Betrag)\n- Fax senden (Text, hochgeladene Datei oder PDF über einen privaten Upload-Link), optional mit Deckblatt\n- Fax für später planen und bis zum Versand stornieren\n- Zustellstatus prüfen, Faxverlauf ansehen, Fax erneut senden\n- Adressbuch für Faxempfänger führen\n- Kontostand abfragen\n\nAnmeldung per OAuth. Nur Versand: mcpfax kann keine Faxe empfangen und darf nicht für unerwünschte Werbefaxe verwendet werden.\n\nBetreiber: PIT Webservices GmbH (Österreich). Support: support@mcpfax.de"
+            "description": "mcpfax sendet echte Faxe an Faxnummern weltweit, direkt aus dem Gespräch. Geben Sie ChatGPT ein Dokument oder einen Text und eine Faxnummer: Der Assistent zeigt zuerst eine Vorschau, fragt nach Ihrer Bestätigung und sendet erst dann.\n\nDas können Sie tun:\n- Vorschau vor dem Versand (Nummernprüfung, Seitenzahl, Betrag)\n- Ein Fax senden (Text, hochgeladene Datei oder PDF über einen privaten Upload-Link), optional mit Deckblatt\n- Fax für später planen und bis zum Versand stornieren\n- Zustellstatus prüfen, Faxverlauf ansehen, Fax erneut senden\n- Adressbuch für Faxempfänger führen\n- Kontostand abfragen\n\nAnmeldung per OAuth. Nur Versand: mcpfax kann keine Faxe empfangen und darf nicht für unerwünschte Werbefaxe verwendet werden.\n\nBetreiber: PIT Webservices GmbH (Österreich). Support: support@mcpfax.de"
           }
         }
       }
